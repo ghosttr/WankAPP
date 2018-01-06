@@ -80,7 +80,7 @@ namespace WankAPP
                     delayTime = 200;
                     break;
             }
-            while (isWanking)
+            if (isWanking)
             {
                 for (int i = 0; i < strokes; i++)
                 {
@@ -124,7 +124,7 @@ namespace WankAPP
         public void Do_Blamm()
         {
             bool IsBlamming = true;
-            while (IsBlamming == true)
+            if (IsBlamming)
             {
                 for (int i = 0; i < 4; i++)
                 {
