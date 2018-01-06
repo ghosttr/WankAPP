@@ -24,10 +24,15 @@ namespace WankAPP
                         line = Console.ReadLine();
                         break;
                     case "help":
+                        Console.Clear();
+                        Console.WriteLine("Help: ");
                         Console.WriteLine("wank fast - wanks fast");
                         Console.WriteLine("wank slow - wanks slowly");
                         Console.WriteLine("help      - display help");
                         Console.WriteLine("exit      - exits app");
+                        Thread.Sleep(5000);
+                        Console.Clear();
+                        Console.WriteLine("Please Enter a Command");
                         line = Console.ReadLine();
                         break;
                     default:
