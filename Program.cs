@@ -23,6 +23,14 @@ namespace WankAPP
                         myWank.Do_Fap(Wank.WankSpeed.Slow, 50);
                         line = Console.ReadLine();
                         break;
+                    case "help":
+                        Console.WriteLine("wank fast - wanks fast");
+                        Console.WriteLine("wank slow - wanks slow");
+                        Console.WriteLine("help      - display help");
+                        Console.WriteLine("exit      - exits app");
+                        break;
+                    default:
+                        goto case "help";
                 }
             }
         }
