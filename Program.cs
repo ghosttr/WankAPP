@@ -25,7 +25,7 @@ namespace WankAPP
                         break;
                     case "help":
                         Console.WriteLine("wank fast - wanks fast");
-                        Console.WriteLine("wank slow - wanks slow");
+                        Console.WriteLine("wank slow - wanks slowly");
                         Console.WriteLine("help      - display help");
                         Console.WriteLine("exit      - exits app");
                         break;
