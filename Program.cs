@@ -15,16 +15,14 @@ namespace WankAPP
             {
                 switch (line)
                 {
-                    case ("wank fast"):
-                        line = "";
+                    case "wank fast":
                         myWank.Do_Fap(Wank.WankSpeed.Fast, 50);
                         line = Console.ReadLine();
                         break;
-                    case ("wank slow"):
-                        line = "";
+                    case "wank slow":
                         myWank.Do_Fap(Wank.WankSpeed.Slow, 50);
                         line = Console.ReadLine();
-                        break;  
+                        break;
                 }
             }
         }
