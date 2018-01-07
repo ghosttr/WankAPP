@@ -164,6 +164,7 @@ namespace WankAPP
         public void Blamm()
         {
             Blamcounter++;
+            Console.SetCursorPosition(ShaftLength + 2, Console.CursorTop);
             switch (Blamcounter % 4)
             {
                 case 0:
