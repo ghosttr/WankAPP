@@ -56,34 +56,31 @@ namespace WankAPP
     {
         int Fapcounter;
         int Blamcounter;
-        
+
+        // Settings
+        int ShaftLength = 7;
+        char Ballsack = '8';
+        char Tip = 'D';
+        String Hand = "MM";
+        int Padding = 1;
+        char ShaftChar = '='; // E.g. ≈
+
+        public int CalculateFapPosition(int i)
+        {
+            int FapDistance = ShaftLength - Hand.Length - Padding * 2;
+            return Math.Abs(i % (FapDistance * 2) - FapDistance) + Hand.Length + Padding;
+        }
+
         public string Fap()
         {
-            string str = "";
+            int FapPosition = CalculateFapPosition(Fapcounter++);
 
-            switch (Fapcounter++ % 6)
-            {
-                case 0:
-                    str = "8====MM=D";
-                    break;
-                case 1:
-                    str = "8===MM==D";
-                    break;
-                case 2:
-                    str = "8==MM===D";
-                    break;
-                case 3:
-                    str = "8=MM====D";
-                    break;
-                case 4:
-                    str = "8==MM===D";
-                    break;
-                case 5:
-                    str = "8===MM==D";
-                    break;
-            }
+            string Shaft = Hand
+                .PadLeft(FapPosition, ShaftChar)
+                .PadRight(ShaftLength, ShaftChar);
 
-            return str;
+            return Ballsack + Shaft + Tip;
+
         }
         public void BeanFlick()
         {
@@ -127,8 +124,9 @@ namespace WankAPP
                 for (int i = 0; i < strokes; i++)
                 {
                     Thread.Sleep(delayTime);
+                    Console.SetCursorPosition(0, Console.CursorTop);
                     Console.Write(Fap());
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
+                    Console.SetCursorPosition(0, Console.CursorTop);
                 }
                 Do_Blamm();
                 
@@ -169,20 +167,20 @@ namespace WankAPP
             switch (Blamcounter % 4)
             {
                 case 0:
-                    Console.Write("8====MM=D-");
-                    Console.SetCursorPosition(Console.CursorLeft - 10, Console.CursorTop);
+                    Console.Write("-");
+                    Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                     break;
                 case 1:
-                    Console.Write("8====MM=D --");
-                    Console.SetCursorPosition(Console.CursorLeft - 12, Console.CursorTop);
+                    Console.Write(" --");
+                    Console.SetCursorPosition(Console.CursorLeft - 3, Console.CursorTop);
                     break;
                 case 2:
-                    Console.Write("8====MM=D --_");
-                    Console.SetCursorPosition(Console.CursorLeft - 13, Console.CursorTop);
+                    Console.Write(" --_");
+                    Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
                     break;
                 case 3:
-                    Console.Write("8====MM=D ___");
-                    Console.SetCursorPosition(Console.CursorLeft - 13, Console.CursorTop);
+                    Console.Write(" ___");
+                    Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
                     break;
             }
         }
