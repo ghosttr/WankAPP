@@ -52,41 +52,38 @@ namespace WankAPP
         }
     }
 
-    class Wank
+    public class Wank
     {
         int Fapcounter;
         int Blamcounter;
         
-        public void Fap()
+        public string Fap()
         {
-            Fapcounter++;
-            switch (Fapcounter % 6)
+            string str = "";
+
+            switch (Fapcounter++ % 6)
             {
                 case 0:
-                    Console.Write("8====MM=D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
+                    str = "8====MM=D";
                     break;
                 case 1:
-                    Console.Write("8===MM==D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
+                    str = "8===MM==D";
                     break;
                 case 2:
-                    Console.Write("8==MM===D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
+                    str = "8==MM===D";
                     break;
                 case 3:
-                    Console.Write("8=MM====D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
+                    str = "8=MM====D";
                     break;
                 case 4:
-                    Console.Write("8==MM===D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
+                    str = "8==MM===D";
                     break;
                 case 5:
-                    Console.Write("8===MM==D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
+                    str = "8===MM==D";
                     break;
             }
+
+            return str;
         }
         public void BeanFlick()
         {
@@ -130,7 +127,8 @@ namespace WankAPP
                 for (int i = 0; i < strokes; i++)
                 {
                     Thread.Sleep(delayTime);
-                    Fap();
+                    Console.Write(Fap());
+                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
                 }
                 Do_Blamm();
                 
