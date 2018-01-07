@@ -15,16 +15,28 @@ namespace WankAPP
             {
                 switch (line)
                 {
-                    case ("wank fast"):
-                        line = "";
+                    case "wank fast":
                         myWank.Do_Fap(Wank.WankSpeed.Fast, 50);
                         line = Console.ReadLine();
                         break;
-                    case ("wank slow"):
-                        line = "";
+                    case "wank slow":
                         myWank.Do_Fap(Wank.WankSpeed.Slow, 50);
                         line = Console.ReadLine();
-                        break;  
+                        break;
+                    case "help":
+                        Console.Clear();
+                        Console.WriteLine("Help: ");
+                        Console.WriteLine("wank fast - wanks fast");
+                        Console.WriteLine("wank slow - wanks slowly");
+                        Console.WriteLine("help      - display help");
+                        Console.WriteLine("exit      - exits app");
+                        Thread.Sleep(5000);
+                        Console.Clear();
+                        Console.WriteLine("Please Enter a Command");
+                        line = Console.ReadLine();
+                        break;
+                    default:
+                        goto case "help";
                 }
             }
         }
