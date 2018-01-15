@@ -8,30 +8,31 @@ namespace WankAPP
         static void Main(string[] args)
         {
             Wank myWank = new Wank();
-            Console.WriteLine("Please Enter a Command");
 
-            string line = Console.ReadLine();
-            while (line != "exit")
+            while (true)
             {
+                Console.Clear();
+                Console.WriteLine("Please Enter a Command");
+                string line = Console.ReadLine();
+
                 switch (line)
                 {
                     case "wank fast":
                         myWank.Do_Fap(Wank.FapSpeed.Fast, 50);
-                        line = Console.ReadLine();
                         break;
                     case "wank slow":
                         myWank.Do_Fap(Wank.FapSpeed.Slow, 50);
-                        line = Console.ReadLine();
                         break;
                     case "flick fast":
                         myWank.Do_BeanFlick(Wank.FapSpeed.Fast, 50);
-                        line = Console.ReadLine();
                         break;
                     case "flick slow":
                         myWank.Do_BeanFlick(Wank.FapSpeed.Slow, 50);
-                        line = Console.ReadLine();
                         break;
+                    case "exit":
+                        return;
                     case "help":
+                    default:
                         Console.Clear();
                         Console.WriteLine("Help: ");
                         Console.WriteLine("wank fast - wanks fast");
@@ -40,13 +41,8 @@ namespace WankAPP
                         Console.WriteLine("flick slow - flicks slowly");
                         Console.WriteLine("help      - display help");
                         Console.WriteLine("exit      - exits app");
-                        Thread.Sleep(5000);
-                        Console.Clear();
-                        Console.WriteLine("Please Enter a Command");
-                        line = Console.ReadLine();
+                        Console.ReadLine();
                         break;
-                    default:
-                        goto case "help";
                 }
             }
         }
@@ -222,8 +218,6 @@ namespace WankAPP
                 IsBlamming = false;
             }
             Console.Clear();
-            Console.WriteLine("Please Enter a Command");
-            
         }
         public void Do_Moist()
         {
@@ -239,8 +233,6 @@ namespace WankAPP
                 IsMoist = false;
             }
             Console.Clear();
-            Console.WriteLine("Please Enter a Command");
-
         }
         public enum FapSpeed { Fast, Slow }
     }

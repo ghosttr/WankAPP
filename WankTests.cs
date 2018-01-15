@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using WankAPP;
 
 namespace WankAPPTests
 {
-    [TestClass]
+    [TestFixture]
     public class WankTests
     {
-        [TestMethod]
+        [Test]
         public void TestFap()
         {
             Wank wank = new Wank();
