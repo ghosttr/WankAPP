@@ -8,30 +8,31 @@ namespace WankAPP
         static void Main(string[] args)
         {
             Wank myWank = new Wank();
-            Console.WriteLine("Please Enter a Command");
 
-            string line = Console.ReadLine();
-            while (line != "exit")
+            while (true)
             {
+                Console.Clear();
+                Console.WriteLine("Please Enter a Command");
+                string line = Console.ReadLine();
+
                 switch (line)
                 {
                     case "wank fast":
                         myWank.Do_Fap(Wank.FapSpeed.Fast, 50);
-                        line = Console.ReadLine();
                         break;
                     case "wank slow":
                         myWank.Do_Fap(Wank.FapSpeed.Slow, 50);
-                        line = Console.ReadLine();
                         break;
                     case "flick fast":
                         myWank.Do_BeanFlick(Wank.FapSpeed.Fast, 50);
-                        line = Console.ReadLine();
                         break;
                     case "flick slow":
                         myWank.Do_BeanFlick(Wank.FapSpeed.Slow, 50);
-                        line = Console.ReadLine();
                         break;
+                    case "exit":
+                        return;
                     case "help":
+                    default:
                         Console.Clear();
                         Console.WriteLine("Help: ");
                         Console.WriteLine("wank fast - wanks fast");
@@ -40,53 +41,42 @@ namespace WankAPP
                         Console.WriteLine("flick slow - flicks slowly");
                         Console.WriteLine("help      - display help");
                         Console.WriteLine("exit      - exits app");
-                        Thread.Sleep(5000);
-                        Console.Clear();
-                        Console.WriteLine("Please Enter a Command");
-                        line = Console.ReadLine();
+                        Console.ReadLine();
                         break;
-                    default:
-                        goto case "help";
                 }
             }
         }
     }
 
-    class Wank
+    public class Wank
     {
         int Fapcounter;
         int Blamcounter;
-        
-        public void Fap()
+
+        // Settings
+        int ShaftLength = 7;
+        char Ballsack = '8';
+        char Tip = 'D';
+        String Hand = "MM";
+        int Padding = 1;
+        char ShaftChar = '='; // E.g. ≈
+
+        public int CalculateFapPosition(int i)
         {
-            Fapcounter++;
-            switch (Fapcounter % 6)
-            {
-                case 0:
-                    Console.Write("8====MM=D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
-                    break;
-                case 1:
-                    Console.Write("8===MM==D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
-                    break;
-                case 2:
-                    Console.Write("8==MM===D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
-                    break;
-                case 3:
-                    Console.Write("8=MM====D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
-                    break;
-                case 4:
-                    Console.Write("8==MM===D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
-                    break;
-                case 5:
-                    Console.Write("8===MM==D");
-                    Console.SetCursorPosition(Console.CursorLeft - 9, Console.CursorTop);
-                    break;
-            }
+            int FapDistance = ShaftLength - Hand.Length - Padding * 2;
+            return Math.Abs(i % (FapDistance * 2) - FapDistance) + Hand.Length + Padding;
+        }
+
+        public string Fap()
+        {
+            int FapPosition = CalculateFapPosition(Fapcounter++);
+
+            string Shaft = Hand
+                .PadLeft(FapPosition, ShaftChar)
+                .PadRight(ShaftLength, ShaftChar);
+
+            return Ballsack + Shaft + Tip;
+
         }
         public void BeanFlick()
         {
@@ -130,7 +120,9 @@ namespace WankAPP
                 for (int i = 0; i < strokes; i++)
                 {
                     Thread.Sleep(delayTime);
-                    Fap();
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write(Fap());
+                    Console.SetCursorPosition(0, Console.CursorTop);
                 }
                 Do_Blamm();
                 
@@ -168,23 +160,24 @@ namespace WankAPP
         public void Blamm()
         {
             Blamcounter++;
+            Console.SetCursorPosition(ShaftLength + 2, Console.CursorTop);
             switch (Blamcounter % 4)
             {
                 case 0:
-                    Console.Write("8====MM=D-");
-                    Console.SetCursorPosition(Console.CursorLeft - 10, Console.CursorTop);
+                    Console.Write("-");
+                    Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                     break;
                 case 1:
-                    Console.Write("8====MM=D --");
-                    Console.SetCursorPosition(Console.CursorLeft - 12, Console.CursorTop);
+                    Console.Write(" --");
+                    Console.SetCursorPosition(Console.CursorLeft - 3, Console.CursorTop);
                     break;
                 case 2:
-                    Console.Write("8====MM=D --_");
-                    Console.SetCursorPosition(Console.CursorLeft - 13, Console.CursorTop);
+                    Console.Write(" --_");
+                    Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
                     break;
                 case 3:
-                    Console.Write("8====MM=D ___");
-                    Console.SetCursorPosition(Console.CursorLeft - 13, Console.CursorTop);
+                    Console.Write(" ___");
+                    Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
                     break;
             }
         }
@@ -225,8 +218,6 @@ namespace WankAPP
                 IsBlamming = false;
             }
             Console.Clear();
-            Console.WriteLine("Please Enter a Command");
-            
         }
         public void Do_Moist()
         {
@@ -242,8 +233,6 @@ namespace WankAPP
                 IsMoist = false;
             }
             Console.Clear();
-            Console.WriteLine("Please Enter a Command");
-
         }
         public enum FapSpeed { Fast, Slow }
     }
